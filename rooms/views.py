@@ -4,7 +4,7 @@ from .models import Room
 
 
 def see_all_room(request):
-    rooms = Room.objects.all()
+    rooms = Room.objects.all()  # django's ORM
     return render(
         request,
         "all_rooms.html",
@@ -15,5 +15,21 @@ def see_all_room(request):
     )
 
 
-def see_one_room(request, room_id):
-    return HttpResponse("see one room")
+def see_one_room(request, room_pk):
+    try:
+        room = Room.objects.get(pk=room_pk)  # django's ORM
+        return render(
+            request,
+            "room_detail.html",
+            {
+                "room": room,
+            },
+        )
+    except Room.DoesNotExist:
+        return render(
+            request,
+            "room_detail.html",
+            {
+                "not_found": True,
+            },
+        )
