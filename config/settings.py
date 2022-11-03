@@ -40,12 +40,22 @@ SYSTEM_APPS = [
 ]
 
 CUSTOM_APPS = [
-    "houses.apps.HousesConfig",
+    "bookings.apps.BookingsConfig",
+    "categories.apps.CategoriesConfig",
+    "common.apps.CommonConfig",
+    "direct_messages.apps.DirectMessagesConfig",
+    "experiences.apps.ExperiencesConfig",
+    "medias.apps.MediasConfig",
+    "reviews.apps.ReviewsConfig",
     "rooms.apps.RoomsConfig",
     "users.apps.UsersConfig",
+    "wishlists.apps.WishlistsConfig",
+]
+THIRD_PARTY_APPS = [
+    "rest_framework",
 ]
 
-INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS
+INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -130,3 +140,7 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# AbstractUser를 상속 맏은 User 모델을 사용하기 위함
+AUTH_USER_MODEL = "users.User"
